@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Layout, Menu, Button, Space, Typography, Card, notification } from 'antd'
-import { 
-  HomeOutlined, 
-  SettingOutlined, 
-  FileOutlined, 
+import { Layout, Menu, Button, Typography, App } from 'antd'
+import {
+  HomeOutlined,
+  SettingOutlined,
+  FileOutlined,
   UserOutlined,
   PlusOutlined,
   SaveOutlined,
@@ -47,11 +47,14 @@ const HeaderActions = styled.div`
   gap: 8px;
 `
 
-function App() {
+function Application() {
   const [collapsed, setCollapsed] = useState(false)
   const [selectedKey, setSelectedKey] = useState('1')
   const [settingsVisible, setSettingsVisible] = useState(false)
   const [appInfo, setAppInfo] = useState({})
+
+  // Get notification instance from Ant Design App component
+  const { notification } = App.useApp()
 
   useEffect(() => {
     // Get application information when loading
@@ -143,38 +146,38 @@ function App() {
           {appInfo.name || 'Electron App'} v{appInfo.version || '1.0.0'}
         </Title>
         <HeaderActions>
-          <Button 
-            icon={<PlusOutlined />} 
+          <Button
+            icon={<PlusOutlined />}
             onClick={() => handleMenuAction('new')}
           >
             New
           </Button>
-          <Button 
-            icon={<FolderOpenOutlined />} 
+          <Button
+            icon={<FolderOpenOutlined />}
             onClick={() => handleMenuAction('open')}
           >
             Open
           </Button>
-          <Button 
-            icon={<SaveOutlined />} 
+          <Button
+            icon={<SaveOutlined />}
             onClick={() => handleMenuAction('save')}
             type="primary"
           >
             Save
           </Button>
-          <Button 
-            icon={<SettingOutlined />} 
+          <Button
+            icon={<SettingOutlined />}
             onClick={showSettings}
           >
             Settings
           </Button>
         </HeaderActions>
       </StyledHeader>
-      
+
       <Layout>
-        <StyledSider 
-          width={200} 
-          collapsible 
+        <StyledSider
+          width={200}
+          collapsible
           collapsed={collapsed}
           onCollapse={setCollapsed}
         >
@@ -186,7 +189,7 @@ function App() {
             onClick={({ key }) => setSelectedKey(key)}
           />
         </StyledSider>
-        
+
         <StyledContent>
           <ContentArea selectedKey={selectedKey} />
         </StyledContent>
@@ -201,4 +204,4 @@ function App() {
   )
 }
 
-export default App 
+export default Application 

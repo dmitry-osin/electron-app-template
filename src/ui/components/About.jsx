@@ -129,7 +129,7 @@ function About() {
   const techStack = [
     { name: 'Electron', version: '28.0.0', description: 'Cross-platform desktop app framework' },
     { name: 'React', version: '18.2.0', description: 'UI library for building interfaces' },
-    { name: 'Vite', version: '5.0.8', description: 'Fast build tool and dev server' },
+    { name: 'Vite', version: '7.1.1', description: 'Fast build tool and dev server' },
     { name: 'Ant Design', version: '5.12.8', description: 'Enterprise UI design system' },
     { name: 'Styled Components', version: '6.1.6', description: 'CSS-in-JS styling solution' },
     { name: 'Node.js', version: processVersions.node || 'Unknown', description: 'JavaScript runtime' },

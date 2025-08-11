@@ -1,0 +1,43 @@
+name: Build Windows App
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build app
+        run: npm run build || npm run dist
+
+      - name: Package app (electron-builder)
+        run: npx electron-builder --win --x64
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Get version
+        run: |
+          $version = $env:GITHUB_REF -replace 'refs/tags/', ''
+          echo "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        shell: pwsh
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.VERSION }}
+          files: dist/*.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} 

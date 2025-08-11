@@ -130,12 +130,44 @@ npm run build:electron
 - `npm run preview` - Preview build
 - `npm run electron` - Start Electron only
 
+## 🔄 CI/CD with GitHub Actions
+
+This project includes GitHub Actions workflows for automated building and testing:
+
+- **Build Windows App**: Automatically builds and releases Windows installer when you push a tag (e.g., `v1.0.0`)
+- **Test and Quality Check**: Runs tests and security audits on push/PR to main branch
+
+### How to create a release:
+
+1. Create and push a tag:
+   ```bash
+   git tag v1.0.0
+   git push origin v1.0.0
+   ```
+
+2. The workflow will automatically:
+   - Build the application
+   - Create Windows installer
+   - Upload to GitHub Releases
+
+### Required setup:
+
+Add `GH_TOKEN` secret to your repository:
+1. Go to **Settings** → **Secrets and variables** → **Actions**
+2. Create new secret named `GH_TOKEN`
+3. Use your GitHub Personal Access Token with `repo` permissions
+
 ## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make changes
 4. Create a Pull Request
+
+The CI/CD pipeline will automatically:
+- Build your changes for all platforms
+- Run quality checks
+- Test the build process
 
 ## 👨‍💻 Author
 

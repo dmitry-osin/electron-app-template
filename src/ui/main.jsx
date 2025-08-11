@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ConfigProvider } from 'antd'
-import App from './App'
+import { App as UIApp } from 'antd'
+import Application from './App'
 import './index.css'
 
 // Initialize application
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ConfigProvider
+    <UIApp
       theme={{
         token: {
           colorPrimary: '#1890ff',
@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         },
       }}
     >
-      <App />
-    </ConfigProvider>
+      <Application />
+    </UIApp>
   </React.StrictMode>
 ) 
